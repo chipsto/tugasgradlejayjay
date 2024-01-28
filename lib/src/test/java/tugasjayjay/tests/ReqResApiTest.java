@@ -26,7 +26,7 @@ public class ReqResApiTest {
     @Test
     public void testCreateUserNegativeCase() throws IOException {
         // Sending invalid data, expecting a 400 Bad Request response
-        String response = reqResApiClient.createUser("a", "Invalid Job");
+        String response = reqResApiClient.createUser("", "Invalid Job");
         assertEquals("HTTP/1.1 400 Bad Request", response);
     }
 
