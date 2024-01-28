@@ -22,6 +22,7 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation libs.guava
+
 }
 
 testing {
@@ -39,4 +40,16 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+}
+
+task greetingTask() {
+    doLast {
+        String nama = project.hasProperty('nama') ? project.property('nama') : 'Gradle User'
+        println "Hello, $nama! Welcome to Gradle World!"
+    }
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:29.0-jre'
+    testImplementation 'junit:junit:4.13'
 }
