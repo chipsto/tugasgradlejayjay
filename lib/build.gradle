@@ -9,6 +9,8 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'java'
+    id ("io.qameta.allure") version "2.11.0"
 }
 
 repositories {
@@ -22,6 +24,7 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation libs.guava
+
 }
 
 testing {
@@ -30,6 +33,7 @@ testing {
         test {
             // Use JUnit Jupiter test framework
             useJUnitJupiter('5.10.0')
+            
         }
     }
 }
@@ -39,4 +43,20 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+}
+
+task greetingTask() {
+    doLast {
+        String nama = project.hasProperty('nama') ? project.property('nama') : 'Gradle User'
+        println "Hello, $nama! Welcome to Gradle World!"
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'io.rest-assured:rest-assured:4.4.0'
+    implementation 'io.rest-assured:json-path:4.4.0'
+    implementation 'io.rest-assured:json-schema-validator:4.4.0'
 }
